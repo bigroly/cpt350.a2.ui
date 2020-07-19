@@ -1,21 +1,34 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule }  from '@angular/platform-browser/animations'
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ToastrModule } from 'ngx-toastr';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { DashboardComponent } from './components/common/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule
+    BrowserAnimationsModule,
+    FormsModule,
+    NgbModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-top-center'      
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

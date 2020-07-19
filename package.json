@@ -21,7 +21,11 @@
     "@angular/platform-browser-dynamic": "~10.0.2",
     "@angular/router": "~10.0.2",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
+    "aws-amplify": "^3.0.20",
+    "aws-amplify-angular": "^5.0.20",
     "bootstrap": "^4.5.0",
+    "moment": "^2.27.0",
+    "ngx-toastr": "^13.0.0",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
