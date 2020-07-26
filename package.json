@@ -20,6 +20,7 @@
     "@angular/platform-browser": "~10.0.2",
     "@angular/platform-browser-dynamic": "~10.0.2",
     "@angular/router": "~10.0.2",
+    "@fortawesome/fontawesome-free": "^5.14.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
     "aws-amplify": "^3.0.20",
     "aws-amplify-angular": "^5.0.20",

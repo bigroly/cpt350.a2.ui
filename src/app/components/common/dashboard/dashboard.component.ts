@@ -7,6 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
+  public modules = [
+    {
+      displayText: 'Lodge leave',
+      route: '/leave/lodge',
+      faIcon: 'fa-leave'
+    }
+  ]
+
   constructor() { }
 
   ngOnInit(): void {

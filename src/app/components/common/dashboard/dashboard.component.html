@@ -1,1 +1,16 @@
-<p>dashboard works!</p>
+<div class="container">
+    
+    <div class="row mt-1 mb-1">
+        <div class="col-12">
+            <h3>Dashboard</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-3" *ngFor="let module of modules">
+            <div class="btn btn-block btn-primary">
+                {{module.displayText}}
+            </div>
+        </div>
+    </div>
+</div>

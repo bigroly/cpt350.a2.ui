@@ -11,13 +11,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { DashboardComponent } from './components/common/dashboard/dashboard.component';
+import { ListComponent } from './components/user/list/list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +29,7 @@ import { DashboardComponent } from './components/common/dashboard/dashboard.comp
     NgbModule,
     ToastrModule.forRoot({
       timeOut: 3000,
-      positionClass: 'toast-top-center'      
+      positionClass: 'toast-bottom-center'      
     })
   ],
   providers: [],
