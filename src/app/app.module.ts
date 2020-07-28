@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { DashboardComponent } from './components/common/dashboard/dashboard.component';
-import { ListComponent } from './components/user/list/list.component';
+import { UserListComponent } from './components/user/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { ListComponent } from './components/user/list/list.component';
     NavbarComponent,
     LoginComponent,
     DashboardComponent,
-    ListComponent
+    UserListComponent
   ],
   imports: [
     BrowserModule,

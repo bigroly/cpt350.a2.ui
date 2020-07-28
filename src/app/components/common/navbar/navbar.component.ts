@@ -15,6 +15,10 @@ export class NavbarComponent implements OnInit {
     {
       route : '/dashboard',
       text : 'Dashboard'
+    },
+    {
+      route: '/users/list',
+      text: 'Users'
     }
   ]
 
