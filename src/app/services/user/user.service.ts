@@ -8,6 +8,9 @@ import { AuthService } from '../common/auth.service';
 import { GetAllUsersResponse } from '../../model/user/get.all.users.response.model';
 import { ToastrService } from 'ngx-toastr';
 
+import { User } from 'src/app/model/user/user.model';
+import { CreateUserResponse } from '../../model/user/create.user.response.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -44,8 +47,34 @@ export class UserService extends BaseService {
 		});
   }
 
-  public createUser(){
-    
+  // public createUser(email: string, pw: string): Promise<boolean>{
+  //   Auth.signUp(email, pw).then(a => {
+
+  //   });
+  // }
+
+  public createUser(user: User): Promise<CreateUserResponse>{
+    return new Promise(resolve => {
+      this._httpClient.post<CreateUserResponse>(this.apiUrl, user, { headers: this.generateHeader() }).toPromise().then(res => {
+        if(res.success){
+          resolve(res);
+        }else{
+          this._toastr.error(res.errorMessage, 'Error creating user');
+        }
+      });
+    })
+  }
+
+  public editUser(user: User): Promise<CreateUserResponse>{
+    return new Promise(resolve => {
+      this._httpClient.put<CreateUserResponse>(this.apiUrl, user, { headers: this.generateHeader() }).toPromise().then(res => {
+        if(res.success){
+          resolve(res);
+        }else{
+          this._toastr.error(res.errorMessage, 'Error editing user');
+        }
+      });
+    })
   }
 
 }

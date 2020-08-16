@@ -1,7 +1,9 @@
 export interface User {
-  email: string;
+  emailAddress: string;
   firstName: string;
   lastName: string;
   contactNumber: string;
-  startDate: string;
+  startDate: Date;
+  managerEmail: string;
+  jobTitle: string;
 }
