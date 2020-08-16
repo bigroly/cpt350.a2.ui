@@ -15,6 +15,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { DashboardComponent } from './components/common/dashboard/dashboard.component';
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { AddEditUserComponent } from './components/user/add-edit-user/add-edit-user.component';
+import { ListRequestsComponent } from './components/requests/list-requests/list-requests.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { AddEditUserComponent } from './components/user/add-edit-user/add-edit-u
     LoginComponent,
     DashboardComponent,
     UserListComponent,
-    AddEditUserComponent
+    AddEditUserComponent,
+    ListRequestsComponent
   ],
   imports: [
     BrowserModule,

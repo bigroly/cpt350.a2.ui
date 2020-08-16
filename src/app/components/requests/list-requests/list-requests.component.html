@@ -1,0 +1,53 @@
+<div class="container">
+    
+  <div class="row mt-1 mb-1">
+      <div class="col-12">
+          <h3>My Requests</h3>
+      </div>
+  </div>
+
+  <div class="row mt-1 mb-1">
+    <div class="col-12"
+    *ngIf="requests.length == 0">
+      <h5>You don't have any Requests yet. Tap on 'Create a Request' below to begin.</h5>
+    </div>
+    
+    <div class="col-4 mt-1 mb-1"
+    *ngFor="let request of requests">
+      <!-- <div class="card user-card">
+        <div class="card-body">
+          <h5 class="card-title"><i class="fas fa-user-circle"></i> {{user.firstName}} {{user.lastName}}</h5>
+          <h6 class="card-subtitle mb-2 text-muted">{{user.jobTitle}}</h6>
+          <p class="card-text">
+            <i class="fas fa-envelope"></i> {{user.emailAddress}} <br/>
+            <i class="fas fa-mobile-alt"></i> {{user.contactNumber}} <br/>            
+          </p>
+          <div class="btn btn-light pull-right"
+          (click)="onEditUserClick(user)">
+            Edit user info
+          </div>
+        </div>
+      </div> -->
+      Request!
+    </div>
+  </div>
+
+  <!-- <div class="row">
+      <div class="col-3" *ngFor="let module of modules">
+          <div class="btn btn-block btn-primary">
+              {{module.displayText}}
+          </div>
+      </div>
+  </div> -->
+
+  <div class="row">
+    <div class="col-3 offset-9 mt-2">
+      <div class="btn btn-block btn-primary"
+      (click)="onCreateRequestClick()">
+        <i class="fas fa-plus-circle"></i> Create a request
+      </div>
+    </div>
+  </div>
+
+
+</div>

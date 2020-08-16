@@ -10,19 +10,13 @@ import { AuthService } from 'src/app/services/common/auth.service';
 export class NavbarComponent implements OnInit {
 
   public navbarOpen:boolean = false;
+  public renderLinks: any[] = [];
 
-  public navLinks = [
-    {
-      route : '/dashboard',
-      text : 'Dashboard'
-    },
-    {
-      route: '/users/list',
-      text: 'Users'
-    }
-  ]
-
-  constructor(private _router:Router, private _authservice: AuthService) { }
+  constructor(private _router:Router, private _authservice: AuthService) { 
+    this._authservice.accessibleLinks.subscribe(l => {
+      this.renderLinks = l;
+    })
+  }
 
   ngOnInit(): void {
     

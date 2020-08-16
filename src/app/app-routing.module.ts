@@ -5,6 +5,7 @@ import { DashboardComponent } from './components/common/dashboard/dashboard.comp
 
 import { AuthguardService as AuthGuard, AuthguardService } from './services/common/authguard.service';
 import { UserListComponent } from './components/user/user-list/user-list.component';
+import { ListRequestsComponent } from './components/requests/list-requests/list-requests.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,11 @@ const routes: Routes = [
         }
       }
     ]
+  },
+  {
+    path: 'requests',
+    component: ListRequestsComponent,
+    canActivate: [AuthGuard]    
   },
   {
     path: 'dashboard',
