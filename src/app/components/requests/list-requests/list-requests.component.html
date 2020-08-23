@@ -6,6 +6,15 @@
       </div>
   </div>
 
+  <div class="row mt-1 mb-1 leave-summary">
+    <div class="col-12 col-sm-6">
+        <h4>Available Annual Leave: {{totalALAvailable | number:'1.2-2' }} hours</h4>
+    </div>
+    <div class="col-12 col-sm-6">
+      <h4>Available Personal Leave: {{totalPLAvailable | number:'1.2-2' }} hours</h4>
+  </div>
+</div>
+
   <div class="row mt-1 mb-1">
     <div class="col-12"
     *ngIf="requests.length == 0">

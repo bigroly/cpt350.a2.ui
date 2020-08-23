@@ -10,6 +10,8 @@ import { ToastrService } from 'ngx-toastr';
 
 import { User } from 'src/app/model/user/user.model';
 import { CreateUserResponse } from '../../model/user/create.user.response.model';
+import { GetUserResponse } from '../../model/user/get.user.response.model';
+import { rejects } from 'assert';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +30,7 @@ export class UserService extends BaseService {
   public getAllUsers(): Promise<GetAllUsersResponse>{
     return new Promise(resolve => {
 
-			let endpoint = `${this.apiUrl}`;
+			let endpoint = `${this.apiUrl}/list`;
 			this._httpClient.get<GetAllUsersResponse>(endpoint, { headers: this.generateHeader() }).toPromise().then(res => {
         if(res.success){
           resolve(res);
@@ -46,12 +48,6 @@ export class UserService extends BaseService {
 			});
 		});
   }
-
-  // public createUser(email: string, pw: string): Promise<boolean>{
-  //   Auth.signUp(email, pw).then(a => {
-
-  //   });
-  // }
 
   public createUser(user: User): Promise<CreateUserResponse>{
     return new Promise(resolve => {
@@ -75,6 +71,19 @@ export class UserService extends BaseService {
         }
       });
     })
+  }
+
+  public getUser(email: string): Promise<GetUserResponse>{    
+    return new Promise(resolve => {
+      let endpoint = `${this.apiUrl}?userEmail=${email}`;
+      this._httpClient.get<GetUserResponse>(endpoint, { headers: this.generateHeader() }).toPromise().then(res => {
+        if(res.success){
+          resolve(res);
+        }else{
+          this._toastr.error(res.errorMessage, 'Error getting user details');
+        }
+      })
+    });
   }
 
 }

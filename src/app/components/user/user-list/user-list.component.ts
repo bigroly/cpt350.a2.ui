@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user/user.service';
 import { User } from 'src/app/model/user/user.model';
-import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 import { AddEditUserComponent } from '../add-edit-user/add-edit-user.component';
 import * as moment from 'moment';
@@ -37,7 +37,13 @@ export class UserListComponent implements OnInit {
       jobTitle: ''
     };
 
-    const modalRef = this._modalService.open(AddEditUserComponent, {size: 'lg'});
+    let ngbModalOptions: NgbModalOptions = {
+      backdrop : 'static',
+      keyboard : false,
+      size: 'lg'
+    };
+
+    const modalRef = this._modalService.open(AddEditUserComponent, ngbModalOptions);
     modalRef.componentInstance.user = newUser;
     modalRef.componentInstance.mode = 'add';
 

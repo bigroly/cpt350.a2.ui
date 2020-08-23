@@ -38,13 +38,12 @@ export class AuthService {
               private _router:Router) { 
     if(localStorage.getItem('authDetails')){
       this.authDetails = JSON.parse(localStorage.getItem('authDetails'));
+      this.buildNavLinks();
     }
   }
 
   public tryLogin(model: Login){
     Auth.signIn(model.email, model.password).then(res => {          
-
-      debugger;
       
       let newAuth: UserAuth = {
         email: res.attributes.email,
@@ -54,21 +53,23 @@ export class AuthService {
       }
 
       this.authDetails = newAuth;
-      localStorage.setItem('authDetails', JSON.stringify(this.authDetails));
-      
-      let newLinks = [];
+      localStorage.setItem('authDetails', JSON.stringify(this.authDetails));     
+      this.buildNavLinks();
+      this._router.navigateByUrl('/dashboard');
+    }).catch(err => {
+      let returnedErr: AwsAuthError = err;
+      this._toastr.error(returnedErr.message, 'Error logging in');
+    });
+  }
+
+  private buildNavLinks(): void{
+    let newLinks = [];
       this.navLinks.forEach(n => {
         if(this.shouldRender(n.requiredPermissions)){
           newLinks.push(n);
         };
       });
       this.accessibleLinks.next(newLinks);
-
-      this._router.navigateByUrl('/dashboard');
-    }).catch(err => {
-      let returnedErr: AwsAuthError = err;
-      this._toastr.error(returnedErr.message, 'Error logging in');
-    });
   }
 
   public logOut(){

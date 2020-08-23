@@ -16,6 +16,7 @@ import { DashboardComponent } from './components/common/dashboard/dashboard.comp
 import { UserListComponent } from './components/user/user-list/user-list.component';
 import { AddEditUserComponent } from './components/user/add-edit-user/add-edit-user.component';
 import { ListRequestsComponent } from './components/requests/list-requests/list-requests.component';
+import { AddRequestFormComponent } from './components/requests/add-request-form/add-request-form.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { ListRequestsComponent } from './components/requests/list-requests/list-
     DashboardComponent,
     UserListComponent,
     AddEditUserComponent,
-    ListRequestsComponent
+    ListRequestsComponent,
+    AddRequestFormComponent
   ],
   imports: [
     BrowserModule,

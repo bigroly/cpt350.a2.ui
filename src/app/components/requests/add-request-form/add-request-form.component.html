@@ -1,0 +1,126 @@
+<div class="row">
+  <div class="col-12">
+    <h3 *ngIf="mode == 'add'">Create Request</h3>
+    <h3 *ngIf="mode == 'edit'">Edit Request</h3>
+  </div>
+</div>
+<form [formGroup]="requestForm"
+(ngSubmit)="onRequestFormSubmit()">
+
+  <div class="row m-t-2">
+
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label for="input-requestor">Requestor</label>
+        <input type="text" 
+        class="form-control" 
+        id="input-requestor" 
+        formControlName="requestor"
+        required>        
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label for="input-approver">To be Approved by</label>
+        <input type="text" 
+        class="form-control" 
+        id="input-approver" 
+        formControlName="approver"
+        required>        
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label for="input-startDate">Start date</label>
+        <input type="text" 
+        class="form-control" 
+        id="input-startDate"
+        ngbDatepicker #d="ngbDatepicker" 
+        [ngModelOptions]="{standalone: true}" 
+        [(ngModel)]="ngbStartDate" 
+        (click)="d.toggle()"/>              
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label for="input-endDate">End date</label>
+        <input type="text" 
+        class="form-control" 
+        id="input-endDate"
+        ngbDatepicker #e="ngbDatepicker" 
+        [ngModelOptions]="{standalone: true}" 
+        [(ngModel)]="ngbEndDate" 
+        (dateSelect)="onEndDateSelect($event)"
+        (click)="e.toggle()"/>              
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4 duration-area">
+      <div>
+        <h4>Calculated duration:</h4>
+      <h4>{{leaveDuration | number:'1.2-2'}} hours</h4>
+      </div>
+    </div>
+
+    <div class="col-sm-6 col-md-8 duration-area">
+      <div>
+        <h4>Available leave:</h4>
+        <h4>
+          Annual Leave: {{alAvailable | number:'1.2-2' }} hours. Personal Leave: {{plAvailable | number:'1.2-2'}} hours.
+        </h4>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 mt-2">
+      <div class="form-group">
+        <label for="input-leaveType">Leave Type</label>
+        <select class="form-control" 
+        id="input-leaveType"
+        formControlName="leaveType">
+          <option *ngFor="let leaveType of leaveTypes">{{leaveType}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6 mt-2">
+      <div class="form-group">
+        <label for="input-notes">Note to Approver (optional)</label>
+        <input type="text" 
+        class="form-control" 
+        id="input-notes" 
+        formControlName="notes"
+        >        
+      </div>
+    </div>
+
+    <div class="col-12 col-md-6">
+      <div class="form-group">
+        <label for="input-support-doc">Attachment(e.g. Medical Cert.)</label>
+        <input type="file" class="form-control-file" id="input-support-doc">
+        <h6 class="mt-2">*only PDF files accepted at this time.</h6>
+      </div>
+    </div>
+
+    <div class="col-12 col-md-3 offset-md-6">      
+      <div class="btn btn-warning btn-block" (click)="cancel()">Cancel</div>
+    </div>
+    <div class="col-12 col-md-3">      
+      <button class="btn btn-primary btn-block" 
+      type="submit" 
+      *ngIf="mode == 'add'"
+      [disabled]="!requestForm.valid">
+        Add
+      </button>
+
+      <button class="btn btn-primary btn-block" 
+      type="submit" 
+      *ngIf="mode == 'edit'"
+      [disabled]="!requestForm.valid">
+        Save
+      </button>      
+    </div>
+  </div>
+</form>

@@ -5,5 +5,6 @@ export interface LeaveRequest {
   startDate: string;
   endDate: string;
   leaveType: string;
+  note: string;
   docLink: string;
 }
