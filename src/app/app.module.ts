@@ -17,6 +17,7 @@ import { UserListComponent } from './components/user/user-list/user-list.compone
 import { AddEditUserComponent } from './components/user/add-edit-user/add-edit-user.component';
 import { ListRequestsComponent } from './components/requests/list-requests/list-requests.component';
 import { AddRequestFormComponent } from './components/requests/add-request-form/add-request-form.component';
+import { ListApprovalsComponent } from './components/approvals/list-approvals/list-approvals.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AddRequestFormComponent } from './components/requests/add-request-form/
     UserListComponent,
     AddEditUserComponent,
     ListRequestsComponent,
-    AddRequestFormComponent
+    AddRequestFormComponent,
+    ListApprovalsComponent
   ],
   imports: [
     BrowserModule,

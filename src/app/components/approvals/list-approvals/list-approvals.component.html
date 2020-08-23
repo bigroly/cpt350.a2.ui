@@ -1,0 +1,79 @@
+<div class="container">
+    
+  <div class="row mt-1 mb-1">
+      <div class="col-12">
+          <h3>My Approvals</h3>
+      </div>
+  </div>
+
+  <div class="row mt-1 mb-1">
+    <div class="col-12"
+    *ngIf="approvals.length == 0">
+      <h5>You don't have any Approvals to view yet.</h5>
+    </div>
+    
+    <div class="col-12 mt-1 mb-1"
+    *ngFor="let approval of approvalUIList">
+      
+    <div class="card user-card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <h5 class="card-title">{{approval.requestInfo.leaveType}} Request from {{approval.requestInfo.requestor}}</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <h6 class="card-subtitle mb-2 text-muted"></h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <p class="card-text">          
+              <strong>Request Details</strong> <br/>
+              From: {{approval.requestInfo.startDate | date}} <br/>
+              To: {{approval.requestInfo.endDate | date }} <br/>
+              Note: {{approval.requestInfo.note}}
+            </p>
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-3">
+            <div class="btn btn-light pull-left"
+            *ngIf="approval.requestInfo.docLink != null && approval.requestInfo.docLink.length > 0"
+            (click)="onViewAttachmentClick(approval.requestInfo.docLink)">
+            <i class="fas fa-paperclip"></i> View Attachment
+            </div>
+          </div>
+          <div class="col-3 offset-6">
+            <div class="btn-group pull-right" role="group" aria-label="Basic example">
+              <button type="button" 
+              class="btn btn-danger"
+              (click)="onUpdateApprovalClick('Rejected', approval.approval)">
+                <i class="far fa-thumbs-down"></i> Reject
+              </button>          
+              <button type="button" 
+              class="btn btn-success"
+              (click)="onUpdateApprovalClick('Approved', approval.approval)">
+                <i class="far fa-thumbs-up"></i> Approve
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+      
+    </div>
+  </div>
+
+  <!-- <div class="row">
+      <div class="col-3" *ngFor="let module of modules">
+          <div class="btn btn-block btn-primary">
+              {{module.displayText}}
+          </div>
+      </div>
+  </div> --> 
+
+
+</div>

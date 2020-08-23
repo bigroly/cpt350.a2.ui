@@ -9,25 +9,17 @@
 
   <div class="row m-t-2">
 
-    <div class="col-12 col-md-6">
-      <div class="form-group">
-        <label for="input-requestor">Requestor</label>
-        <input type="text" 
-        class="form-control" 
-        id="input-requestor" 
-        formControlName="requestor"
-        required>        
+    <div class="col-12 col-md-6 requestor-detail">
+      <div>
+        <h4>Requestor:</h4>
+      <h4>{{requestorEmail}}</h4>
       </div>
     </div>
 
-    <div class="col-12 col-md-6">
-      <div class="form-group">
-        <label for="input-approver">To be Approved by</label>
-        <input type="text" 
-        class="form-control" 
-        id="input-approver" 
-        formControlName="approver"
-        required>        
+    <div class="col-12 col-md-6 requestor-detail">
+      <div>
+        <h4>Approver:</h4>
+      <h4>{{approverEmail}}</h4>
       </div>
     </div>
 
@@ -80,18 +72,19 @@
         <select class="form-control" 
         id="input-leaveType"
         formControlName="leaveType">
-          <option *ngFor="let leaveType of leaveTypes">{{leaveType}}</option>
+          <option *ngFor="let leaveType of leaveTypes"
+          [ngValue]="leaveType">{{leaveType}}</option>
         </select>
       </div>
     </div>
 
     <div class="col-12 col-md-6 mt-2">
       <div class="form-group">
-        <label for="input-notes">Note to Approver (optional)</label>
+        <label for="input-note">Note to Approver (optional)</label>
         <input type="text" 
         class="form-control" 
-        id="input-notes" 
-        formControlName="notes"
+        id="input-note" 
+        formControlName="note"
         >        
       </div>
     </div>
@@ -99,7 +92,10 @@
     <div class="col-12 col-md-6">
       <div class="form-group">
         <label for="input-support-doc">Attachment(e.g. Medical Cert.)</label>
-        <input type="file" class="form-control-file" id="input-support-doc">
+        <input type="file" 
+        class="form-control-file" 
+        id="input-support-doc"
+        (change)="onFileInputChange($event)">
         <h6 class="mt-2">*only PDF files accepted at this time.</h6>
       </div>
     </div>

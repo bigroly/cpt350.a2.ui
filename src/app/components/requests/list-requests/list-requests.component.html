@@ -22,22 +22,38 @@
     </div>
     
     <div class="col-4 mt-1 mb-1"
-    *ngFor="let request of requests">
-      <!-- <div class="card user-card">
-        <div class="card-body">
-          <h5 class="card-title"><i class="fas fa-user-circle"></i> {{user.firstName}} {{user.lastName}}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{user.jobTitle}}</h6>
-          <p class="card-text">
-            <i class="fas fa-envelope"></i> {{user.emailAddress}} <br/>
-            <i class="fas fa-mobile-alt"></i> {{user.contactNumber}} <br/>            
-          </p>
-          <div class="btn btn-light pull-right"
-          (click)="onEditUserClick(user)">
-            Edit user info
-          </div>
-        </div>
-      </div> -->
-      Request!
+    *ngFor="let request of requestsCombinedUI">
+      
+    <div class="card user-card">
+      <div class="card-body">
+        <h5 class="card-title">Request for {{request.requestInfo.leaveType}}</h5>
+        
+        <span class="badge badge-info mb-2 mt-1"
+        *ngIf="request.approval.status == 'Pending Approval'">
+          <i class="fas fa-hourglass-half"></i> Pending Approval
+        </span>
+
+        <span class="badge badge-success mb-2 mt-1"
+        *ngIf="request.approval.status == 'Approved'">
+          <i class="far fa-check-circle"></i> Approved
+        </span>
+
+        <span class="badge badge-danger mb-2 mt-1"
+        *ngIf="request.approval.status == 'Rejected'">
+          <i class="far fa-times-circle"></i> Rejected
+        </span>
+        
+        <p class="card-text">
+          From: {{request.requestInfo.startDate | date}} <br/>
+          To: {{request.requestInfo.endDate | date }} <br/>            
+        </p>
+        <!-- <div class="btn btn-light pull-right"
+        (click)="onEditUserClick(user)">
+          Edit user info
+        </div> -->
+      </div>
+    </div>
+      
     </div>
   </div>
 

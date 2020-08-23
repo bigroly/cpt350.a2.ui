@@ -9,6 +9,9 @@ import { v4 as uuid } from 'uuid';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/model/user/user.model';
 import * as moment from 'moment';
+import { ApprovalCombinedUI } from 'src/app/model/approvals/approval.combined.ui.model';
+import { Approval } from 'src/app/model/requests/approval.model';
+import { ApprovalService } from 'src/app/services/approval/approval.service';
 
 @Component({
   selector: 'app-list-requests',
@@ -28,39 +31,57 @@ export class ListRequestsComponent implements OnInit {
   public totalPLUsed: number = 0;
   public totalPLAvailable: number = 0;
 
+  public requestsCombinedUI: ApprovalCombinedUI[] = [];
+
   constructor(
     private _requestsService: LeaveRequestsService,
     private _authService: AuthService,
     private _userService: UserService,
+    private _approvalService: ApprovalService,
     private _modalService: NgbModal) { 
-      this._requestsService.getMyRequests(this._authService.authDetails.email).then(r => {
-        this.requests = r.requests;
-        this._userService.getUser(this._authService.authDetails.email).then(response => {
-          this.myProfile = response.user;
-          this.calculateLeave();
-        });
-
-      })
+      this.init();
   }
 
   ngOnInit(): void {
     
   }
 
+  public init(){
+    this._requestsService.getMyRequests(this._authService.authDetails.email).then(r => {
+      this.requests = r.requests;
+      this._userService.getUser(this._authService.authDetails.email).then(response => {
+        this.myProfile = response.user;
+
+        for(let req of this.requests){
+          this._approvalService.getApprovalsForUser(req.approver).then(a => {
+            this.requestsCombinedUI.push({
+              guid: req.requestGuid,
+              approval: a.approvals.find(apv => apv.requestGuid == req.requestGuid),
+              requestInfo: req
+            });
+          })
+        }
+
+        this.calculateLeave();
+      });
+    });
+  }
+
   private calculateLeave(): void{
 
-    for(let request of this.requests){
-      let requestStart = moment(request.startDate);
-      let requestEnd = moment(request.endDate);      
-      let requestHoursUsed = moment.duration(requestEnd.diff(requestStart)).asDays() + 1;
-      
-      if(request.leaveType == 'Annual Leave'){        
-        this.totalALUsed +=  requestHoursUsed * 7.6 ;
-      }
-      else{
-        this.totalPLUsed += requestHoursUsed * 7.6
+    for(let request of this.requestsCombinedUI){
+      if(request.approval.status != 'Rejected'){
+        let requestStart = moment(request.requestInfo.startDate);
+        let requestEnd = moment(request.requestInfo.endDate);      
+        let requestHoursUsed = moment.duration(requestEnd.diff(requestStart)).asDays() + 1;
+        
+        if(request.requestInfo.leaveType == 'Annual Leave'){        
+          this.totalALUsed +=  requestHoursUsed * 7.6 ;
+        }
+        else{
+          this.totalPLUsed += requestHoursUsed * 7.6
+        }     
       }     
-
     };
     
     let empStartDate = moment(this.myProfile.startDate);
@@ -89,6 +110,9 @@ export class ListRequestsComponent implements OnInit {
     modalRef.componentInstance.requestorProfile = this.myProfile;
 
     modalRef.result.then(newRequest => {
+      if(newRequest != null){
+        this.init();
+      }
     }).catch(err => {});
   }
 

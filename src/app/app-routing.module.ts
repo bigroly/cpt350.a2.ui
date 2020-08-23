@@ -1,3 +1,4 @@
+import { ListApprovalsComponent } from './components/approvals/list-approvals/list-approvals.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
@@ -35,6 +36,11 @@ const routes: Routes = [
   {
     path: 'requests',
     component: ListRequestsComponent,
+    canActivate: [AuthGuard]    
+  },
+  {
+    path: 'approvals',
+    component: ListApprovalsComponent,
     canActivate: [AuthGuard]    
   },
   {

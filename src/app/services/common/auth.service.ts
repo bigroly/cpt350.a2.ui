@@ -29,6 +29,11 @@ export class AuthService {
       route: '/requests',
       text: 'My Requests',
       requiredPermissions: null
+    },
+    {
+      route: '/approvals',
+      text: 'My Approvals',
+      requiredPermissions: null
     }
   ];
 
