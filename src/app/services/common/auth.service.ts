@@ -16,11 +16,6 @@ export class AuthService {
 
   private navLinks = [
     {
-      route : '/dashboard',
-      text : 'Dashboard',
-      requiredPermissions: null
-    },
-    {
       route: '/users/list',
       text: 'Users',
       requiredPermissions: ['Admins']
@@ -52,7 +47,7 @@ export class AuthService {
       
       let newAuth: UserAuth = {
         email: res.attributes.email,
-        jwtToken: res.signInUserSession.accessToken.jwtToken,
+        jwtToken: res.signInUserSession.idToken.jwtToken,
         tokenExpiry: res.signInUserSession.accessToken.payload.exp,
         permissionGroups: res.signInUserSession.accessToken.payload["cognito:groups"] ?? []
       }
@@ -60,7 +55,7 @@ export class AuthService {
       this.authDetails = newAuth;
       localStorage.setItem('authDetails', JSON.stringify(this.authDetails));     
       this.buildNavLinks();
-      this._router.navigateByUrl('/dashboard');
+      this._router.navigateByUrl('/requests');
     }).catch(err => {
       let returnedErr: AwsAuthError = err;
       this._toastr.error(returnedErr.message, 'Error logging in');

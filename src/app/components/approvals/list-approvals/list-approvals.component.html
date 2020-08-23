@@ -46,7 +46,7 @@
             </div>
           </div>
           <div class="col-3 offset-6">
-            <div class="btn-group pull-right" role="group" aria-label="Basic example">
+            <div class="btn-group pull-right" *ngIf="approval.approval.status =='Pending Approval'" role="group" aria-label="Basic example">
               <button type="button" 
               class="btn btn-danger"
               (click)="onUpdateApprovalClick('Rejected', approval.approval)">

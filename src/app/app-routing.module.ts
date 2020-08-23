@@ -42,11 +42,6 @@ const routes: Routes = [
     path: 'approvals',
     component: ListApprovalsComponent,
     canActivate: [AuthGuard]    
-  },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard]
   }
 ];
 
