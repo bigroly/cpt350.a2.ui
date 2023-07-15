@@ -23,7 +23,7 @@
     "@angular/router": "~10.0.2",
     "@fortawesome/fontawesome-free": "^5.14.0",
     "@ng-bootstrap/ng-bootstrap": "^6.1.0",
-    "aws-amplify": "^3.0.20",
+    "aws-amplify": "^5.3.4",
     "aws-amplify-angular": "^5.0.20",
     "bootstrap": "^4.5.0",
     "moment": "^2.27.0",
